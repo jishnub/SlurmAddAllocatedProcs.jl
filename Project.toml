@@ -1,9 +1,13 @@
-name = "EasyClusterManagersSlurm"
+name = "ClusterManagerSlurmBatch"
 uuid = "4b0af0f2-a3e4-42c8-afa2-c5af2ee86004"
 authors = ["Jishnu Bhattacharya <jishnub@users.noreply.github.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+ClusterManagers = "34f1f09b-3a8b-5176-ab39-66d58a4d544e"
+
 [compat]
+ClusterManagers = "0.4"
 julia = "1"
 
 [extras]
