@@ -1,4 +1,4 @@
-name = "ClusterManagerSlurmBatch"
+name = "SlurmAddAllocatedProcs"
 uuid = "4b0af0f2-a3e4-42c8-afa2-c5af2ee86004"
 authors = ["Jishnu Bhattacharya <jishnub@users.noreply.github.com> and contributors"]
 version = "0.1.0"
@@ -11,7 +11,8 @@ ClusterManagers = "0.4"
 julia = "1"
 
 [extras]
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Test", "Distributed"]

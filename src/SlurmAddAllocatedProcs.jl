@@ -1,7 +1,7 @@
-module ClusterManagerSlurmBatch
+module SlurmAddAllocatedProcs
 
 using ClusterManagers
-export addprocs_sbatch
+export addprocs_slurm_allocated
 
 function parse_SLURM_TASKS_PER_NODE(SLURM_TASKS_PER_NODE)
     v = split(SLURM_TASKS_PER_NODE, ",")
@@ -29,10 +29,16 @@ function parse_SLURM_TASKS_PER_NODE(SLURM_TASKS_PER_NODE)
     return np
 end
 
-function addprocs_sbatch(kw...)
+"""
+    addprocs_slurm_allocated()
+
+Add workers when run in a batch Slurm job. The number of tasks to use is inferred from the environment
+variables set by the resource allocation step (eg. using `sbatch` flags).
+"""
+function addprocs_slurm_allocated()
     SLURM_TASKS_PER_NODE = get(ENV, "SLURM_TASKS_PER_NODE", "")
     np = parse_SLURM_TASKS_PER_NODE(SLURM_TASKS_PER_NODE)
-    addprocs_slurm(np; kw...)
+    addprocs_slurm(np)
 end
 
 end
