@@ -1,14 +1,13 @@
 using SlurmAddAllocatedProcs
-using SlurmAddAllocatedProcs: parse_SLURM_TASKS_PER_NODE
 using Test
 
 @testset "SlurmAddAllocatedProcs.jl" begin
     @test_throws ErrorException addprocs_slurm_allocated()
-    @testset "parse_SLURM_TASKS_PER_NODE" begin
-        @test parse_SLURM_TASKS_PER_NODE("28(x3)") == 28*3
-        @test parse_SLURM_TASKS_PER_NODE("28(x3),1") == 28*3+1
-        @test parse_SLURM_TASKS_PER_NODE("2,28(x2),1") == 2+28*2+1
-        @test parse_SLURM_TASKS_PER_NODE("2,28(x2),1,28(x4)") == 2+28*2+1+28*4
+    @testset "parse_slurm_tasks_per_node" begin
+        @test parse_slurm_tasks_per_node("28(x3)") == 28*3
+        @test parse_slurm_tasks_per_node("28(x3),1") == 28*3+1
+        @test parse_slurm_tasks_per_node("2,28(x2),1") == 2+28*2+1
+        @test parse_slurm_tasks_per_node("2,28(x2),1,28(x4)") == 2+28*2+1+28*4
     end
 end
 
