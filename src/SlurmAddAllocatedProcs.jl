@@ -2,8 +2,9 @@ module SlurmAddAllocatedProcs
 
 using ClusterManagers
 export addprocs_slurm_allocated
+export parse_slurm_tasks_per_node
 
-function parse_SLURM_TASKS_PER_NODE(SLURM_TASKS_PER_NODE)
+function parse_slurm_tasks_per_node(SLURM_TASKS_PER_NODE)
     v = split(SLURM_TASKS_PER_NODE, ",")
     pattern = r"([0-9]+)\(x([0-9]+)\)"
     np = 0
@@ -37,7 +38,7 @@ variables set by the resource allocation step (eg. using `sbatch` flags).
 """
 function addprocs_slurm_allocated()
     SLURM_TASKS_PER_NODE = get(ENV, "SLURM_TASKS_PER_NODE", "")
-    np = parse_SLURM_TASKS_PER_NODE(SLURM_TASKS_PER_NODE)
+    np = parse_slurm_tasks_per_node(SLURM_TASKS_PER_NODE)
     addprocs_slurm(np)
 end
 
